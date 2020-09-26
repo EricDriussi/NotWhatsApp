@@ -3,6 +3,7 @@ package com.driussi.kotlinmessenger
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
@@ -17,8 +18,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 class RegisterActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
 
-    //    private lateinit var database: DatabaseReference
-    val database = Firebase.database
+    private lateinit var database: DatabaseReference
+//    val database = Firebase.database
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +27,7 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         auth = Firebase.auth
+        database = Firebase.database.reference
 
 
         register.setOnClickListener {
@@ -48,27 +50,25 @@ class RegisterActivity : AppCompatActivity() {
                     .addOnCompleteListener(this) {
                         if (!it.isSuccessful) return@addOnCompleteListener
 
-                        val user = auth!!.currentUser
-                        writeNewUser(user!!.uid, user.displayName, user.email)
-                        Toast.makeText(this, "Registered ${it.result?.user.toString()} succesfully!", Toast.LENGTH_SHORT).show()
+                        var user = auth!!.currentUser
+                        writeNewUser(user!!.uid, name.text.toString(), user.email)
 
+                    }.addOnSuccessListener {
+
+                        val intent = Intent(this, LatestMessagesActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        startActivity(intent)
 
                     }.addOnFailureListener {
-                        Toast.makeText(this, "${it.message}!", Toast.LENGTH_LONG).show()
+                        Log.d("RegisterActivity: ", "${it.message}!")
 
                     }
         }
     }
 
     private fun writeNewUser(userId: String, username: String?, email: String?) {
-
         val user = User(username, email)
-
-        database.reference.child("users").child(userId)
-                .child("email").setValue(email)
-
-        database.reference.child("users").child(userId)
-                .child("uuid").setValue(userId)
+        database.child("users").child(userId).setValue(user)
 
     }
 
