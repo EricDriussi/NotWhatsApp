@@ -17,10 +17,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 
 class RegisterActivity : AppCompatActivity() {
+
     private lateinit var auth: FirebaseAuth
-
     private lateinit var database: DatabaseReference
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,13 +31,12 @@ class RegisterActivity : AppCompatActivity() {
 
         register.setOnClickListener {
 
-            registerUser()
-
+            registration()
         }
-
     }
 
-    private fun registerUser() {
+    // Starts the registration process if necessary data is provided
+    private fun registration() {
 
         if (email.text.toString().isEmpty() || password.text.toString().isEmpty() || name.toString().isEmpty()) {
             Toast.makeText(this, "Please enter your information", Toast.LENGTH_SHORT).show()
@@ -46,46 +44,54 @@ class RegisterActivity : AppCompatActivity() {
 
         } else {
 
-            auth.createUserWithEmailAndPassword(email.text.toString(), password.text.toString())
-                    .addOnCompleteListener(this) {
-                        if (!it.isSuccessful) return@addOnCompleteListener
-
-                        val user = auth!!.currentUser
-                        writeNewUser(user!!.uid, name.text.toString(), user.email)
-
-                    }.addOnSuccessListener {
-
-                        val intent = Intent(this, LatestMessagesActivity::class.java)
-                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-                        startActivity(intent)
-
-                    }.addOnFailureListener {
-                        Log.d("RegisterActivity: ", "${it.message}!")
-
-                    }
+            registerUser()
         }
     }
 
+    // Checks the registration process and reacts to it
+    private fun registerUser() {
+
+        auth.createUserWithEmailAndPassword(email.text.toString(), password.text.toString())
+
+                // If authenticated
+                .addOnCompleteListener(this) {
+                    if (!it.isSuccessful) return@addOnCompleteListener
+
+                    val user = auth!!.currentUser
+                    writeNewUser(user!!.uid, name.text.toString(), user.email)
+
+                    // If successfully stored
+                }.addOnSuccessListener {
+
+                    gotoMessages()
+
+                    // If something goes wrong
+                }.addOnFailureListener {
+
+                    Log.d("RegisterActivity: ", "${it.message}!")
+                    Toast.makeText(this, "Registration failed", Toast.LENGTH_SHORT).show()
+                }
+    }
+
+    // Creates new user in firebase
     private fun writeNewUser(userId: String, username: String?, email: String?) {
         val user = User(username, email)
         database.child("users").child(userId).setValue(user)
-
     }
 
+    // Redirects to LatestMessagesActivity
+    private fun gotoMessages(){
+
+        val intent = Intent(this, LatestMessagesActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(intent)
+    }
+
+    // Redirects to LoginActivity
     fun gotoLogin(view: View) {
 
         val intent = Intent(this, LoginActivity::class.java)
-
         startActivity(intent)
         finish()
-
-
     }
 }
-
-@IgnoreExtraProperties
-data class User (
-        var username: String? = "",
-        var email: String? = "",
-        var photoURL: String = "https://firebasestorage.googleapis.com/v0/b/kotlinmessenger-757ff.appspot.com/o/whatsapp.png?alt=media&token=12ec0938-59e9-419b-8134-971fabd4b4b5"
-)

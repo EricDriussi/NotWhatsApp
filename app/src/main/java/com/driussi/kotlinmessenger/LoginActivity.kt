@@ -12,6 +12,7 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
+
     private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,42 +23,53 @@ class LoginActivity : AppCompatActivity() {
 
         login.setOnClickListener {
 
-            loginUser()
+            login()
 
         }
     }
 
-    private fun loginUser() {
+    // Starts the login process if necessary data is provided
+    private fun login() {
         if (emaillog.text.toString().isEmpty() || passwordlog.text.toString().isEmpty()) {
             Toast.makeText(this, "Please enter your information", Toast.LENGTH_SHORT).show()
             return
 
         } else {
 
-            auth.signInWithEmailAndPassword(emaillog.text.toString(), passwordlog.text.toString())
-                    .addOnCompleteListener(this) {
-                        if (!it.isSuccessful) return@addOnCompleteListener
-
-                        Log.d("LoginActivity: ", "Logged in")
-
-
-                    }.addOnSuccessListener {
-
-                        val intent = Intent(this, LatestMessagesActivity::class.java)
-                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-                        startActivity(intent)
-
-                    }.addOnFailureListener {
-                        Toast.makeText(this, "${it.message}!", Toast.LENGTH_LONG).show()
-
-                    }
+            loginUser()
         }
     }
 
+    // Checks the login process and reacts to it
+    private fun loginUser() {
+
+        auth.signInWithEmailAndPassword(emaillog.text.toString(), passwordlog.text.toString())
+                .addOnCompleteListener(this) {
+                    if (!it.isSuccessful) return@addOnCompleteListener
+
+                    // If authenticated
+                }.addOnSuccessListener {
+
+                    gotoMessages()
+
+                }.addOnFailureListener {
+                    Toast.makeText(this, "${it.message}!", Toast.LENGTH_LONG).show()
+
+                }
+    }
+
+    // Redirects to LatestMessagesActivity
+    private fun gotoMessages() {
+
+        val intent = Intent(this, LatestMessagesActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(intent)
+    }
+
+    // Redirects to RegisterActivity
     fun gotoReg(view: View) {
 
         val intent = Intent(this, RegisterActivity::class.java)
-
         startActivity(intent)
         finish()
 

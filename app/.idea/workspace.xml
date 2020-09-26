@@ -13,15 +13,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b11e2d7c-5fff-4aa1-8757-8b9021810ab6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__de_hdodenhof_circleimageview_3_1_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/driussi/kotlinmessenger/User.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/driussi/kotlinmessenger/LatestMessagesActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/driussi/kotlinmessenger/LatestMessagesActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/driussi/kotlinmessenger/NewMessageActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/driussi/kotlinmessenger/NewMessageActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/driussi/kotlinmessenger/LoginActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/driussi/kotlinmessenger/LoginActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/driussi/kotlinmessenger/RegisterActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/driussi/kotlinmessenger/RegisterActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/user_row.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/user_row.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +42,8 @@
       <list>
         <option value="resourceFile" />
         <option value="layoutResourceFile" />
+        <option value="Class" />
+        <option value="Kotlin File" />
       </list>
     </option>
   </component>

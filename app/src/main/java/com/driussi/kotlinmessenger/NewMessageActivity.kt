@@ -26,34 +26,35 @@ class NewMessageActivity : AppCompatActivity() {
         fetchUsers()
     }
 
-    private fun fetchUsers(){
+    // Fetch users from database and presents prepared objects for display
+    private fun fetchUsers() {
         val ref = FirebaseDatabase.getInstance().getReference("/users")
 
-        ref.addListenerForSingleValueEvent(object: ValueEventListener{
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val adapter = GroupAdapter<GroupieViewHolder>()
 
-                snapshot.children.forEach{
+                // Fetching part
+                snapshot.children.forEach {
                     Log.d("NewMessage", it.toString())
 
+                    // Preparing object part
                     val user = it.getValue(User::class.java)
 
                     if (user != null)
                         adapter.add(UserItem(user))
                 }
 
+                // Displaying part
                 recView_NewMessage.adapter = adapter
             }
 
-            override fun onCancelled(error: DatabaseError) {
-
-
-            }
-
+            override fun onCancelled(error: DatabaseError) {}
         })
     }
 }
 
+// Manages user display in RecyclerView - activity_new_message
 class UserItem(val user: User) : Item<GroupieViewHolder>() {
 
     override fun getLayout(): Int {

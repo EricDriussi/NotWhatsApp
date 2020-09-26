@@ -25,11 +25,14 @@ class LatestMessagesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_latest_messages)
 
+        supportActionBar?.title = "Recent chats"
+
         database = Firebase.database.reference
 
         checkLogin()
     }
 
+    // Redirects to RegisterActivity if not logged in
     private fun checkLogin() {
         val uid = FirebaseAuth.getInstance().uid
 
@@ -38,19 +41,39 @@ class LatestMessagesActivity : AppCompatActivity() {
         }
     }
 
+    // Redirects to RegisterActivity
+    private fun backToReg() {
+        val intent = Intent(this, RegisterActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(intent)
+        finish()
+    }
+
+    // Makes top right menu
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.nav_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    // Reacts to menu selection
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
         when (item?.itemId) {
+
+            // Redirects to New MessageActivity
             R.id.newMessage -> {
 
                 val intent = Intent(this, NewMessageActivity::class.java)
                 startActivity(intent)
             }
+            //Signs out user
             R.id.signOut -> {
+
                 FirebaseAuth.getInstance().signOut()
                 backToReg()
             }
+            //Updates user profile pic
             R.id.pic -> {
-
 
                 val intent = Intent(Intent.ACTION_PICK)
                 intent.type = "image/*"
@@ -61,22 +84,13 @@ class LatestMessagesActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.nav_menu, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
 
-    private fun backToReg() {
-        val intent = Intent(this, RegisterActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-        startActivity(intent)
-        finish()
-    }
-
+    // Updates Firebase with new image selection
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == 0 && resultCode == Activity.RESULT_OK && data != null) {
+
             val uri = data.data
 
             val filename = UUID.randomUUID().toString()
@@ -85,15 +99,15 @@ class LatestMessagesActivity : AppCompatActivity() {
             if (uri == null) return
 
             ref.putFile(uri).addOnSuccessListener {
-                Log.d("imageupload ", "${it.metadata?.path}!")
+
+                Log.d("imageupload ", "${it.metadata?.path}")
                 ref.downloadUrl.addOnSuccessListener {
 
-                    //change pic in database
+                    // Actual logic
                     database.child("users").child(FirebaseAuth.getInstance().currentUser!!.uid).child("photoURL").setValue(it.toString())
 
 
                 }
-
             }
         }
     }
