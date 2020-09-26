@@ -7,6 +7,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
@@ -21,9 +22,6 @@ class NewMessageActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
 
         supportActionBar?.title = "Select User"
-
-//        val adapter = GroupAdapter<GroupieViewHolder>()
-//        recView_NewMessage.adapter = adapter
 
         fetchUsers()
     }
@@ -66,5 +64,8 @@ class UserItem(val user: User) : Item<GroupieViewHolder>() {
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
 
         viewHolder.itemView.username.text = user.username
+        Picasso.get()
+                .load(user.photoURL)
+                .into(viewHolder.itemView.userpic)
     }
 }

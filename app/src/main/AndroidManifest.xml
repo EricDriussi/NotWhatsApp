@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".NewMessageActivity"
             android:parentActivityName=".LatestMessagesActivity">
-            >
+
             <meta-data
                 android:name="android.support.PARENT_Activity"
                 android:value=".LatestMessagesActivity" />

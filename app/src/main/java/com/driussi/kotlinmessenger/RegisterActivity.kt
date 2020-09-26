@@ -1,6 +1,7 @@
 package com.driussi.kotlinmessenger
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -19,7 +20,6 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
 
     private lateinit var database: DatabaseReference
-//    val database = Firebase.database
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,7 +50,7 @@ class RegisterActivity : AppCompatActivity() {
                     .addOnCompleteListener(this) {
                         if (!it.isSuccessful) return@addOnCompleteListener
 
-                        var user = auth!!.currentUser
+                        val user = auth!!.currentUser
                         writeNewUser(user!!.uid, name.text.toString(), user.email)
 
                     }.addOnSuccessListener {
@@ -84,7 +84,8 @@ class RegisterActivity : AppCompatActivity() {
 }
 
 @IgnoreExtraProperties
-data class User(
+data class User (
         var username: String? = "",
-        var email: String? = ""
+        var email: String? = "",
+        var photoURL: String = "https://firebasestorage.googleapis.com/v0/b/kotlinmessenger-757ff.appspot.com/o/whatsapp.png?alt=media&token=12ec0938-59e9-419b-8134-971fabd4b4b5"
 )
