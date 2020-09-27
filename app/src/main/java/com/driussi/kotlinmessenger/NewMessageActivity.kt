@@ -1,5 +1,6 @@
 package com.driussi.kotlinmessenger
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -45,6 +46,18 @@ class NewMessageActivity : AppCompatActivity() {
                         adapter.add(UserItem(user))
                 }
 
+                // Redirects to chat log
+                adapter.setOnItemClickListener { item, view ->
+
+                    val userItem = item as UserItem
+
+                    intent = Intent(view.context, ChatLogActivity::class.java)
+                    intent.putExtra("USER_KEY", userItem.user)
+
+                    startActivity(intent)
+                    finish()
+                }
+
                 // Displaying part
                 recView_NewMessage.adapter = adapter
             }
@@ -52,6 +65,7 @@ class NewMessageActivity : AppCompatActivity() {
             override fun onCancelled(error: DatabaseError) {}
         })
     }
+
 }
 
 // Manages user display in RecyclerView - activity_new_message

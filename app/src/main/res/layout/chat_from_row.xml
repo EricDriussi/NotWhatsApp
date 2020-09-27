@@ -4,32 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="6dp"
+    android:layout_marginBottom="6dp"
+    android:paddingVertical="4dp"
     android:background="@color/myBackGround">
 
-    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+    <de.hdodenhof.circleimageview.CircleImageView
 
         android:id="@+id/userpic"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginStart="15dp"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         app:civ_border_color="@color/myWhite"
         app:civ_border_width="2dp"
-
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/username"
+        android:id="@+id/message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
-        android:text="TextView"
-        android:textColor="@color/myWhite"
-        android:textSize="18dp"
-        android:textStyle="bold"
+        android:background="@drawable/round_button"
+        android:maxWidth="240dp"
+        android:padding="10dp"
+        android:text="FROM: this might be too long of a text, we'll see how it goes lol"
+        android:textColor="@color/myBackGround"
+        android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/userpic"
         app:layout_constraintStart_toEndOf="@+id/userpic"
         app:layout_constraintTop_toTopOf="@+id/userpic"
-        app:layout_constraintVertical_bias="0.518" />
+        app:layout_constraintVertical_bias="0.5" />
 </androidx.constraintlayout.widget.ConstraintLayout>
