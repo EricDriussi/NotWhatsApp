@@ -4,19 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="6dp"
-    android:layout_marginBottom="6dp"
+    android:layout_marginVertical="4dp"
     android:paddingVertical="4dp"
     android:background="@color/myBackGround">
 
     <de.hdodenhof.circleimageview.CircleImageView
 
         android:id="@+id/userpic"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="16dp"
         app:civ_border_color="@color/myWhite"
         app:civ_border_width="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -24,11 +21,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/message"
+        android:id="@+id/messageFROM"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginVertical="4dp"
         android:layout_marginStart="100dp"
         android:background="@drawable/round_button"
+        android:backgroundTint="@android:color/holo_purple"
         android:maxWidth="240dp"
         android:padding="10dp"
         android:text="FROM: this might be too long of a text, we'll see how it goes lol"

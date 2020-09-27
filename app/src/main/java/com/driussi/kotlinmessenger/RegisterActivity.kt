@@ -74,8 +74,8 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     // Creates new user in firebase
-    private fun writeNewUser(userId: String, username: String?, email: String?) {
-        val user = User(username, email)
+    private fun writeNewUser(userId: String, username: String, email: String?) {
+        val user = User(userId, username, email)
         database.child("users").child(userId).setValue(user)
     }
 
