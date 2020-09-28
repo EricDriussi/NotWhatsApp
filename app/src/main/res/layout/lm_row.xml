@@ -7,7 +7,8 @@
     android:background="@color/myBackGround">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/userpic"
+
+        android:id="@+id/lmpic"
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:layout_marginStart="15dp"
@@ -20,19 +21,33 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/username"
+        android:id="@+id/lmusername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:maxWidth="240dp"
         android:text="Username"
         android:textColor="@color/myWhite"
-        android:textSize="18dp"
+        android:textSize="16dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/userpic"
-        app:layout_constraintStart_toEndOf="@+id/userpic"
-        app:layout_constraintTop_toTopOf="@+id/userpic"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintBottom_toTopOf="@+id/lmmessage"
+        app:layout_constraintStart_toEndOf="@+id/lmpic"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0" />
+
+    <TextView
+        android:id="@+id/lmmessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:maxWidth="240dp"
+        android:text="message"
+        android:textColor="@color/myWhite"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/lmpic"
+        app:layout_constraintTop_toBottomOf="@+id/lmusername"
+        app:layout_constraintVertical_bias="1" />
 
     <View
         android:id="@+id/divider"
@@ -41,8 +56,8 @@
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
-        android:background="?android:attr/listDivider"
         android:backgroundTint="@color/myWhite"
+        android:background="?android:attr/listDivider"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

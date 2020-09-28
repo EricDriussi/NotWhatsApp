@@ -8,21 +8,26 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="userpickup" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="loggg" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b11e2d7c-5fff-4aa1-8757-8b9021810ab6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/driussi/kotlinmessenger/UserItem.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/driussi/kotlinmessenger/model/LatestMessageModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/layout/lm_row.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/driussi/kotlinmessenger/ChatLogActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/driussi/kotlinmessenger/ChatLogActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/driussi/kotlinmessenger/ChatMessage.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/driussi/kotlinmessenger/model/ChatMessage.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/driussi/kotlinmessenger/LatestMessagesActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/driussi/kotlinmessenger/LatestMessagesActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/driussi/kotlinmessenger/NewMessageActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/driussi/kotlinmessenger/NewMessageActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/driussi/kotlinmessenger/RegisterActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/driussi/kotlinmessenger/RegisterActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/driussi/kotlinmessenger/User.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/driussi/kotlinmessenger/model/User.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/chat_from_row.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/chat_from_row.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/chat_to_row.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/chat_to_row.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/driussi/kotlinmessenger/model/ChatFromItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/driussi/kotlinmessenger/model/ChatFromModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/driussi/kotlinmessenger/model/ChatToItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/driussi/kotlinmessenger/model/ChatToModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/driussi/kotlinmessenger/model/UserItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/driussi/kotlinmessenger/model/UserModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_chat_log.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_chat_log.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_latest_messages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_latest_messages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/user_row.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/user_row.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,9 +51,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="resourceFile" />
-        <option value="layoutResourceFile" />
         <option value="Kotlin File" />
         <option value="Class" />
+        <option value="layoutResourceFile" />
         <option value="Kotlin Class" />
       </list>
     </option>
@@ -78,6 +83,7 @@
       <recent name="com.driussi.kotlinmessenger" />
     </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="com.driussi.kotlinmessenger.model" />
       <recent name="com.driussi.kotlinmessenger" />
     </key>
     <key name="android.template.-548622239">
@@ -169,26 +175,30 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="770" y="250" width="428" height="560" key="#com.intellij.ide.util.MemberChooser" timestamp="1601284977456">
+    <state x="770" y="250" width="428" height="560" key="#com.intellij.ide.util.MemberChooser" timestamp="1601314758616">
       <screen x="46" y="0" width="1874" height="1080" />
     </state>
-    <state x="770" y="250" width="428" height="560" key="#com.intellij.ide.util.MemberChooser/46.0.1874.1080@46.0.1874.1080" timestamp="1601284977456" />
+    <state x="770" y="250" width="428" height="560" key="#com.intellij.ide.util.MemberChooser/46.0.1874.1080@46.0.1874.1080" timestamp="1601314758616" />
+    <state x="675" y="37" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1601305506673">
+      <screen x="46" y="0" width="1874" height="1080" />
+    </state>
+    <state x="675" y="37" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/46.0.1874.1080@46.0.1874.1080" timestamp="1601305506673" />
     <state x="717" y="281" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1601287642229">
       <screen x="46" y="0" width="1874" height="1080" />
     </state>
     <state x="717" y="281" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/46.0.1874.1080@46.0.1874.1080" timestamp="1601287642229" />
-    <state x="766" y="198" width="436" height="664" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog" timestamp="1601287716611">
+    <state x="766" y="198" width="436" height="664" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog" timestamp="1601303863638">
       <screen x="46" y="0" width="1874" height="1080" />
     </state>
-    <state x="766" y="198" width="436" height="664" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/46.0.1874.1080@46.0.1874.1080" timestamp="1601287716611" />
+    <state x="766" y="198" width="436" height="664" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/46.0.1874.1080@46.0.1874.1080" timestamp="1601303863638" />
     <state x="567" y="289" key="AndroidCreateResourceDirectoryDialog" timestamp="1601111486164">
       <screen x="46" y="0" width="1874" height="1080" />
     </state>
     <state x="567" y="289" key="AndroidCreateResourceDirectoryDialog/46.0.1874.1080@46.0.1874.1080" timestamp="1601111486164" />
-    <state x="566" y="288" width="832" height="482" key="AndroidCreateResourceFileDialog" timestamp="1601113497874">
+    <state x="566" y="288" width="832" height="482" key="AndroidCreateResourceFileDialog" timestamp="1601301783894">
       <screen x="46" y="0" width="1874" height="1080" />
     </state>
-    <state x="566" y="288" width="832" height="482" key="AndroidCreateResourceFileDialog/46.0.1874.1080@46.0.1874.1080" timestamp="1601113497874" />
+    <state x="566" y="288" width="832" height="482" key="AndroidCreateResourceFileDialog/46.0.1874.1080@46.0.1874.1080" timestamp="1601301783894" />
     <state x="841" y="347" key="AndroidCreateXmlResourceDialog" timestamp="1600948581915">
       <screen x="46" y="0" width="1874" height="1080" />
     </state>
@@ -201,22 +211,22 @@
       <screen x="46" y="0" width="1874" height="1080" />
     </state>
     <state x="767" y="289" key="FileChooserDialogImpl/46.0.1874.1080@46.0.1874.1080" timestamp="1601202514454" />
-    <state width="1832" height="298" key="GridCell.Tab.0.bottom" timestamp="1601287746281">
+    <state width="1832" height="255" key="GridCell.Tab.0.bottom" timestamp="1601318197640">
       <screen x="46" y="0" width="1874" height="1080" />
     </state>
-    <state width="1832" height="298" key="GridCell.Tab.0.bottom/46.0.1874.1080@46.0.1874.1080" timestamp="1601287746281" />
-    <state width="1832" height="298" key="GridCell.Tab.0.center" timestamp="1601287746280">
+    <state width="1832" height="255" key="GridCell.Tab.0.bottom/46.0.1874.1080@46.0.1874.1080" timestamp="1601318197640" />
+    <state width="1832" height="255" key="GridCell.Tab.0.center" timestamp="1601318197640">
       <screen x="46" y="0" width="1874" height="1080" />
     </state>
-    <state width="1832" height="298" key="GridCell.Tab.0.center/46.0.1874.1080@46.0.1874.1080" timestamp="1601287746280" />
-    <state width="1832" height="298" key="GridCell.Tab.0.left" timestamp="1601287746279">
+    <state width="1832" height="255" key="GridCell.Tab.0.center/46.0.1874.1080@46.0.1874.1080" timestamp="1601318197640" />
+    <state width="1832" height="255" key="GridCell.Tab.0.left" timestamp="1601318197639">
       <screen x="46" y="0" width="1874" height="1080" />
     </state>
-    <state width="1832" height="298" key="GridCell.Tab.0.left/46.0.1874.1080@46.0.1874.1080" timestamp="1601287746279" />
-    <state width="1832" height="298" key="GridCell.Tab.0.right" timestamp="1601287746280">
+    <state width="1832" height="255" key="GridCell.Tab.0.left/46.0.1874.1080@46.0.1874.1080" timestamp="1601318197639" />
+    <state width="1832" height="255" key="GridCell.Tab.0.right" timestamp="1601318197640">
       <screen x="46" y="0" width="1874" height="1080" />
     </state>
-    <state width="1832" height="298" key="GridCell.Tab.0.right/46.0.1874.1080@46.0.1874.1080" timestamp="1601287746280" />
+    <state width="1832" height="255" key="GridCell.Tab.0.right/46.0.1874.1080@46.0.1874.1080" timestamp="1601318197640" />
     <state x="635" y="149" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1600944861490">
       <screen x="46" y="0" width="1874" height="1080" />
     </state>

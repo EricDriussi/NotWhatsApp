@@ -7,7 +7,7 @@ import com.xwray.groupie.Item
 import kotlinx.android.synthetic.main.user_row.view.*
 
 // Manages user display in RecyclerView - activity_new_message
-class UserItem(val user: User) : Item<GroupieViewHolder>() {
+class UserModel(val user: User) : Item<GroupieViewHolder>() {
 
     override fun getLayout(): Int {
 
