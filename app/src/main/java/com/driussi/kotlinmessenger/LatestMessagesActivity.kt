@@ -4,20 +4,23 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import com.driussi.kotlinmessenger.model.User
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import java.util.*
 
 class LatestMessagesActivity : AppCompatActivity() {
+
+    // Current user to pass around
+    companion object {
+        var currentUser: User? = null
+    }
 
     private lateinit var database: DatabaseReference
 
@@ -29,21 +32,40 @@ class LatestMessagesActivity : AppCompatActivity() {
 
         database = Firebase.database.reference
 
+        fetchCurrentUser()
         checkLogin()
     }
 
-    // Redirects to RegisterActivity if not logged in
+    // Gets current user
+    private fun fetchCurrentUser() {
+
+        val uid = FirebaseAuth.getInstance().uid
+        val ref = Firebase.database.getReference("/users/$uid")
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                currentUser = snapshot.getValue(User::class.java)
+                Log.d("userpickup", currentUser?.username.toString())
+            }
+
+            override fun onCancelled(error: DatabaseError) {}
+
+        })
+
+    }
+
+    // Redirects to LoginActivity if not logged in
     private fun checkLogin() {
         val uid = FirebaseAuth.getInstance().uid
 
         if (uid == null) {
-            backToReg()
+            backToLogin()
         }
     }
 
     // Redirects to RegisterActivity
-    private fun backToReg() {
-        val intent = Intent(this, RegisterActivity::class.java)
+    private fun backToLogin() {
+        val intent = Intent(this, LoginActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(intent)
         finish()
@@ -70,7 +92,7 @@ class LatestMessagesActivity : AppCompatActivity() {
             R.id.signOut -> {
 
                 FirebaseAuth.getInstance().signOut()
-                backToReg()
+                backToLogin()
             }
             //Updates user profile pic
             R.id.pic -> {

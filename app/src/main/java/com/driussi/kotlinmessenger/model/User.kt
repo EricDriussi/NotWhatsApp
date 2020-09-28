@@ -1,4 +1,4 @@
-package com.driussi.kotlinmessenger
+package com.driussi.kotlinmessenger.model
 
 import android.os.Parcelable
 import com.google.firebase.database.IgnoreExtraProperties

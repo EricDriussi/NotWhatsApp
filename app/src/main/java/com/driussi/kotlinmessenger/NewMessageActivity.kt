@@ -4,17 +4,16 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.driussi.kotlinmessenger.model.User
+import com.driussi.kotlinmessenger.model.UserItem
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
-import com.xwray.groupie.Item
 import kotlinx.android.synthetic.main.activity_new_message.*
-import kotlinx.android.synthetic.main.user_row.view.*
 
 class NewMessageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,21 +66,4 @@ class NewMessageActivity : AppCompatActivity() {
         })
     }
 
-}
-
-// Manages user display in RecyclerView - activity_new_message
-class UserItem(val user: User) : Item<GroupieViewHolder>() {
-
-    override fun getLayout(): Int {
-
-        return R.layout.user_row
-    }
-
-    override fun bind(viewHolder: GroupieViewHolder, position: Int) {
-
-        viewHolder.itemView.username.text = user.username
-        Picasso.get()
-                .load(user.photoURL)
-                .into(viewHolder.itemView.userpic)
-    }
 }
