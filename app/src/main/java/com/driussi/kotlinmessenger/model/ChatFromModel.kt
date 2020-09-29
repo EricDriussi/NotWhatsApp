@@ -16,8 +16,12 @@ class ChatFromModel(val text: String, val user: User?) : Item<GroupieViewHolder>
     }
 
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
-        viewHolder.itemView.messageFROM.text = text
-        Picasso.get().load(user?.photoURL).into(viewHolder.itemView.fromUserPic)
+        viewHolder
+                .itemView
+                .messageFROM.text = text
+        Picasso.get()
+                .load(user?.photoURL)
+                .into(viewHolder.itemView.fromUserPic)
 
     }
 }

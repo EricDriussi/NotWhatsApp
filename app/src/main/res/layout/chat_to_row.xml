@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginVertical="2dp"
-    android:background="@color/myBackGround"
-    >
+    android:background="@android:color/transparent">
 
     <de.hdodenhof.circleimageview.CircleImageView
 
@@ -14,7 +13,7 @@
         android:layout_width="42dp"
         android:layout_height="42dp"
         android:layout_marginEnd="16dp"
-        app:civ_border_color="@color/myWhite"
+        app:civ_border_color="@color/colorSecondary"
         app:civ_border_width="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,10 +26,12 @@
         android:layout_marginVertical="4dp"
         android:layout_marginEnd="15dp"
         android:background="@drawable/round_button"
+        android:backgroundTint="@color/colorPrimaryDark"
         android:maxWidth="240dp"
         android:padding="10dp"
         android:text="TO: this might be to"
         android:textColor="@color/myBackGround"
+        android:textIsSelectable="true"
         android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/toUserPic"
         app:layout_constraintEnd_toStartOf="@+id/toUserPic"

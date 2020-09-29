@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/myBackGround">
+    android:background="@android:color/transparent">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/userpic"
@@ -13,7 +13,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        app:civ_border_color="@color/myWhite"
+        app:civ_border_color="@color/colorSecondary"
         app:civ_border_width="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +26,7 @@
         android:layout_marginStart="24dp"
         android:maxWidth="240dp"
         android:text="Username"
-        android:textColor="@color/myWhite"
+        android:textColor="@color/colorSecondary"
         android:textSize="18dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/userpic"

@@ -16,7 +16,9 @@ class UserModel(val user: User) : Item<GroupieViewHolder>() {
 
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
 
-        viewHolder.itemView.username.text = user.username
+        viewHolder
+                .itemView
+                .username.text = user.username
         Picasso.get()
                 .load(user.photoURL)
                 .into(viewHolder.itemView.userpic)

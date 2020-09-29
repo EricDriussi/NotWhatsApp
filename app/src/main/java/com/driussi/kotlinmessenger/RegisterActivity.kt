@@ -19,6 +19,8 @@ class RegisterActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
+    private var TAG: String = "REGISTER"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,17 +30,16 @@ class RegisterActivity : AppCompatActivity() {
         database = Firebase.database.reference
 
 
-        register.setOnClickListener {
+        registerBtn.setOnClickListener { checkUserInput() }
 
-            registration()
-        }
+        mainToLogin.setOnClickListener { gotoLogin() }
     }
 
     // Starts the registration process if necessary data is provided
-    private fun registration() {
+    private fun checkUserInput() {
 
-        if (email.text.toString().isEmpty() || password.text.toString().isEmpty() || name.toString().isEmpty()) {
-            Toast.makeText(this, "Please enter your information", Toast.LENGTH_SHORT).show()
+        if (emailReg.text.toString().isEmpty() || passwordReg.text.toString().isEmpty() || nameReg.toString().isEmpty()) {
+            Toast.makeText(this, "Please enter email and password", Toast.LENGTH_SHORT).show()
             return
 
         } else {
@@ -50,25 +51,26 @@ class RegisterActivity : AppCompatActivity() {
     // Checks the registration process and reacts to it
     private fun registerUser() {
 
-        auth.createUserWithEmailAndPassword(email.text.toString(), password.text.toString())
+        auth.createUserWithEmailAndPassword(emailReg.text.toString(), passwordReg.text.toString())
 
                 // If authenticated
                 .addOnCompleteListener(this) {
                     if (!it.isSuccessful) return@addOnCompleteListener
 
-                    val user = auth!!.currentUser
-                    writeNewUser(user!!.uid, name.text.toString(), user.email)
+                    val user = auth.currentUser
+                    writeNewUser(user!!.uid, nameReg.text.toString(), user.email)
 
                     // If successfully stored
                 }.addOnSuccessListener {
 
+                    Log.d(TAG, "Registered user successfully")
                     gotoMessages()
 
                     // If something goes wrong
                 }.addOnFailureListener {
+                    Toast.makeText(this, "Unable to register, check email and username", Toast.LENGTH_LONG).show()
+                    Log.d(TAG, "${it.message}")
 
-                    Log.d("RegisterActivity: ", "${it.message}!")
-                    Toast.makeText(this, "Registration failed", Toast.LENGTH_SHORT).show()
                 }
     }
 
@@ -79,15 +81,16 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     // Redirects to LatestMessagesActivity
-    private fun gotoMessages(){
+    private fun gotoMessages() {
 
         val intent = Intent(this, LatestMessagesActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(intent)
+        finish()
     }
 
     // Redirects to LoginActivity
-    fun gotoLogin(view: View) {
+    fun gotoLogin() {
 
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)

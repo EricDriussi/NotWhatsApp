@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginVertical="2dp"
-    android:background="@color/myBackGround">
+    android:background="@android:color/transparent">
 
     <de.hdodenhof.circleimageview.CircleImageView
 
@@ -13,7 +13,7 @@
         android:layout_width="42dp"
         android:layout_height="42dp"
         android:layout_marginStart="16dp"
-        app:civ_border_color="@color/myWhite"
+        app:civ_border_color="@color/colorSecondary"
         app:civ_border_width="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,11 +26,12 @@
         android:layout_marginVertical="4dp"
         android:layout_marginStart="15dp"
         android:background="@drawable/round_button"
-        android:backgroundTint="@android:color/holo_purple"
+        android:backgroundTint="#E9FFD0"
         android:maxWidth="240dp"
         android:padding="10dp"
         android:text="FROM: this might be too long of a text, we'll see how it goes lol"
-        android:textColor="@color/myBackGround"
+        android:textColor="@color/colorSecondaryDark"
+        android:textIsSelectable="true"
         android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/fromUserPic"
         app:layout_constraintStart_toEndOf="@+id/fromUserPic"

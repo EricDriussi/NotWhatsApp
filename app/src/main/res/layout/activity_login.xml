@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1E1E1E"
+    android:background="@color/myBackGround"
     android:gravity="top"
     android:orientation="vertical"
     tools:context=".LoginActivity">
@@ -23,7 +23,7 @@
 
 
     <EditText
-        android:id="@+id/emaillog"
+        android:id="@+id/emailLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="35dp"
@@ -35,12 +35,12 @@
         android:inputType="textEmailAddress"
         android:padding="10dp"
         android:text="testmebby267@gmail.com"
-        android:textColor="@color/myWhite"
-        android:textColorHint="@color/myWhite"
+        android:textColor="@color/colorSecondaryDark"
+        android:textColorHint="@color/colorSecondary"
         android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/passwordlog"
+        android:id="@+id/passwordLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="35dp"
@@ -52,12 +52,12 @@
         android:inputType="textPassword"
         android:padding="10dp"
         android:text="I3WAH%6&amp;r9"
-        android:textColor="@color/myWhite"
-        android:textColorHint="@color/myWhite"
+        android:textColor="@color/colorSecondaryDark"
+        android:textColorHint="@color/colorSecondary"
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/login"
+        android:id="@+id/loginBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="35dp"
@@ -74,10 +74,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:onClick="gotoReg"
         android:padding="10sp"
-        android:text="Back to Registration"
-        android:textColor="@android:color/primary_text_dark_nodisable"
+        android:text="Create an account"
+        android:textColor="@color/colorSecondary"
         android:textSize="15sp"
         android:textStyle="bold" />
 

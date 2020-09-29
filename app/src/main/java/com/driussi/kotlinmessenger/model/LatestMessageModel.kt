@@ -15,7 +15,6 @@ import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
 import kotlinx.android.synthetic.main.lm_row.view.*
-import kotlinx.android.synthetic.main.user_row.view.*
 
 // Manages message display in RecyclerView - latest_messages
 class LatestMessageModel(val message: ChatMessage) : Item<GroupieViewHolder>() {
@@ -29,8 +28,11 @@ class LatestMessageModel(val message: ChatMessage) : Item<GroupieViewHolder>() {
 
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
 
-        viewHolder.itemView.lmmessage.text = message.text
+        viewHolder
+                .itemView
+                .lmmessage.text = message.text
 
+        // Get the uid for the chat partner
         val partnerID: String =
 
         if (message.fromID == FirebaseAuth.getInstance().currentUser?.uid)
@@ -38,13 +40,16 @@ class LatestMessageModel(val message: ChatMessage) : Item<GroupieViewHolder>() {
         else
             message.fromID.toString()
 
-
         val ref = FirebaseDatabase.getInstance().getReference("/users/$partnerID")
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
+
+            // Get the chat partner from Firebase
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 chatPartner = snapshot.getValue(User::class.java)
-                viewHolder.itemView.lmusername.text = chatPartner?.username
+                viewHolder
+                        .itemView
+                        .lmusername.text = chatPartner?.username
 
                 Picasso.get()
                         .load(chatPartner?.photoURL)
@@ -52,10 +57,6 @@ class LatestMessageModel(val message: ChatMessage) : Item<GroupieViewHolder>() {
             }
 
             override fun onCancelled(error: DatabaseError) {}
-
         })
-
-
     }
-
 }

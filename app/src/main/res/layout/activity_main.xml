@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1E1E1E"
+    android:background="@color/myBackGround"
     android:gravity="top"
     android:orientation="vertical"
     tools:context=".RegisterActivity">
@@ -22,7 +22,7 @@
         app:srcCompat="@drawable/whatsapp" />
 
     <EditText
-        android:id="@+id/name"
+        android:id="@+id/nameReg"
         android:inputType="textPersonName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,15 +31,13 @@
         android:layout_marginRight="35dp"
         android:background="@drawable/round_outline"
         android:hint="Name"
-        android:text="aUser"
-
         android:padding="10dp"
-        android:textColor="@color/myWhite"
-        android:textColorHint="@color/myWhite"
+        android:textColor="@color/colorSecondaryDark"
+        android:textColorHint="@color/colorSecondary"
         android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/email"
+        android:id="@+id/emailReg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="35dp"
@@ -48,16 +46,14 @@
         android:background="@drawable/round_outline"
         android:ems="10"
         android:hint="Email"
-        android:text="testmebby267@gmail.com"
-
         android:inputType="textEmailAddress"
         android:padding="10dp"
-        android:textColor="@color/myWhite"
-        android:textColorHint="@color/myWhite"
+        android:textColor="@color/colorSecondaryDark"
+        android:textColorHint="@color/colorSecondary"
         android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/passwordReg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="35dp"
@@ -66,16 +62,14 @@
         android:background="@drawable/round_outline"
         android:ems="10"
         android:hint="Password"
-        android:text="I3WAH%6&amp;r9"
-
         android:inputType="textPassword"
         android:padding="10dp"
-        android:textColor="@color/myWhite"
-        android:textColorHint="@color/myWhite"
+        android:textColor="@color/colorSecondaryDark"
+        android:textColorHint="@color/colorSecondary"
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/register"
+        android:id="@+id/registerBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="35dp"
@@ -92,10 +86,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:onClick="gotoLogin"
         android:padding="10sp"
         android:text="Already have an account?"
-        android:textColor="@android:color/primary_text_dark_nodisable"
+        android:textColor="@color/colorSecondary"
         android:textSize="15sp"
         android:textStyle="bold" />
 

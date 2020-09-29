@@ -11,16 +11,14 @@ import com.driussi.kotlinmessenger.model.ChatMessage
 import com.driussi.kotlinmessenger.model.LatestMessageModel
 import com.xwray.groupie.GroupieViewHolder
 import com.driussi.kotlinmessenger.model.User
-import com.driussi.kotlinmessenger.model.UserModel
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.Item
 import kotlinx.android.synthetic.main.activity_latest_messages.*
-import kotlinx.android.synthetic.main.lm_row.view.*
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -28,32 +26,33 @@ class LatestMessagesActivity : AppCompatActivity() {
 
     val adapter = GroupAdapter<GroupieViewHolder>()
     val messagesMap = HashMap<String, ChatMessage>()
+    private lateinit var auth: FirebaseAuth
+    private lateinit var database: FirebaseDatabase
 
     // Current user to pass around
     companion object {
         var currentUser: User? = null
     }
 
-    private lateinit var database: DatabaseReference
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_latest_messages)
 
-        listenLatestMessage()
-
-        listenOpenChat()
-
         supportActionBar?.title = "Recent chats"
-
-        database = Firebase.database.reference
-
+        auth = Firebase.auth
+        database = Firebase.database
         fetchCurrentUser()
-        checkLogin()
+
+        if (auth.uid == null) {
+            backToLogin()
+        }
+
+        latestMessagesListener()
+        gotoChatListener()
     }
 
     // Sends clicked user to ChatLogActivity
-    private fun listenOpenChat() {
+    private fun gotoChatListener() {
 
         // Redirects to chat log
         adapter.setOnItemClickListener { item, view ->
@@ -67,17 +66,17 @@ class LatestMessagesActivity : AppCompatActivity() {
     }
 
     // Listener for updates to Firebase - latest-messages
-    private fun listenLatestMessage() {
+    private fun latestMessagesListener() {
 
         val fromID = FirebaseAuth.getInstance().uid
-        val ref = FirebaseDatabase.getInstance().getReference("/latest-messages/$fromID").addChildEventListener(object : ChildEventListener {
+        database.getReference("/latest-messages/$fromID").addChildEventListener(object : ChildEventListener {
 
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-                refreshAdapter(snapshot)
+                refreshLatestList(snapshot)
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
-                refreshAdapter(snapshot)
+                refreshLatestList(snapshot)
             }
 
             override fun onChildRemoved(snapshot: DataSnapshot) {}
@@ -91,7 +90,7 @@ class LatestMessagesActivity : AppCompatActivity() {
     }
 
     // This is stupidly inefficient and it makes me MAD
-    private fun refreshAdapter(snapshot: DataSnapshot) {
+    private fun refreshLatestList(snapshot: DataSnapshot) {
 
         adapter.clear()
         val message = snapshot.getValue(ChatMessage::class.java)!!
@@ -103,7 +102,7 @@ class LatestMessagesActivity : AppCompatActivity() {
     private fun fetchCurrentUser() {
 
         val uid = FirebaseAuth.getInstance().uid
-        val ref = Firebase.database.getReference("/users/$uid")
+        val ref = database.getReference("/users/$uid")
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
 
@@ -114,15 +113,6 @@ class LatestMessagesActivity : AppCompatActivity() {
 
         })
 
-    }
-
-    // Redirects to LoginActivity if not logged in
-    private fun checkLogin() {
-        val uid = FirebaseAuth.getInstance().uid
-
-        if (uid == null) {
-            backToLogin()
-        }
     }
 
     // Redirects to RegisterActivity
@@ -142,7 +132,7 @@ class LatestMessagesActivity : AppCompatActivity() {
     // Reacts to menu selection
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        when (item?.itemId) {
+        when (item.itemId) {
 
             // Redirects to New MessageActivity
             R.id.newMessage -> {
@@ -153,7 +143,7 @@ class LatestMessagesActivity : AppCompatActivity() {
             //Signs out user
             R.id.signOut -> {
 
-                FirebaseAuth.getInstance().signOut()
+                auth.signOut()
                 backToLogin()
             }
             //Updates user profile pic
@@ -167,7 +157,6 @@ class LatestMessagesActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-
 
     // Updates Firebase with new image selection
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -188,7 +177,7 @@ class LatestMessagesActivity : AppCompatActivity() {
                 ref.downloadUrl.addOnSuccessListener {
 
                     // Actual logic
-                    database.child("users").child(FirebaseAuth.getInstance().currentUser!!.uid).child("photoURL").setValue(it.toString())
+                    database.reference.child("users").child(FirebaseAuth.getInstance().currentUser!!.uid).child("photoURL").setValue(it.toString())
 
 
                 }
